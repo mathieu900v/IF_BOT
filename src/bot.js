@@ -26,6 +26,19 @@ client.on('message', async (message) => {
       .substring(PREFIX.length)
       .split(/\s+/);
     if (CMD_NAME === 'qui_vient') {
+      const hasRole = message.member.roles.cache.filter(role => role.id === process.env.BO_ID 
+        || role.ID === process.env.MOITIE_BO_ID 
+        || role.ID === process.env.JOKER_BO_ID
+        || role.ID === process.env.SMURF_BO_ID
+        || role.ID === process.env.BOOMER_BO_ID)
+
+      console.log(hasRole)
+
+      if(hasRole == null){
+        message.reply("Tu ne possèdes pas les rôles nécessaire pour effectuer cette commande")
+        return;
+      } 
+
       const channel = client.channels.cache.find(channel => channel.id === message.channel.id)
       const channelWebHook = client.channels.cache.find(channel => channel.id === process.env.WEBHOOK_CHANNEL_ID)
 
@@ -76,7 +89,6 @@ client.on('message', async (message) => {
         console.log("Erreur send:\n" + error)
         return message.reply("Mauvais format .qui_vient date: <date> heure: <heure> lieu: <lieu>");
       }
-
 
 
 
