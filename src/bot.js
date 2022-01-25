@@ -30,6 +30,13 @@ client.on('message', async (message) => {
     if (CMD_NAME === 'ping') {
       message.reply(`Pong ` + args);
     }
+    if (CMD_NAME === 'shuffle') {
+      var shuffled = args.toString().split('').sort(() => 0.5-Math.random()).join('');
+      message.reply(shuffled);
+
+    }
+
+
     if (CMD_NAME === 'emote') {
       message.reply("\:kongstrong:");
     }
@@ -81,7 +88,6 @@ client.on('message', async (message) => {
               webHookMsgReact.react("✅");
               webHookMsgReact.react("❔");
               webHookMsgReact.react("❌");
-              webHookMsgReact.react('<a:kongstrong:933816635809210368>');
             })
           })
 
